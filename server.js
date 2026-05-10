@@ -70,6 +70,11 @@ const findShortestPath = (start, stones) => {
 // 3. API ENDPOINT
 // ==========================================
 
+// ---> NEW: HEALTH CHECK ROUTE <---
+app.get('/', (req, res) => {
+    res.send('Jadrolita API is live and ready!');
+});
+
 app.post('/api/calculate-path', (req, res) => {
     try {
         const { start, stones } = req.body;
@@ -99,7 +104,8 @@ app.post('/api/calculate-path', (req, res) => {
     }
 });
 
-const PORT = 5000;
+// ---> NEW: DYNAMIC PORT FOR RENDER <---
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Jadrolita API is running on http://localhost:${PORT}`);
+    console.log(`Jadrolita API is running on port ${PORT}`);
 });
